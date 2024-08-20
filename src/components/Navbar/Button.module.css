@@ -1,0 +1,12 @@
+.button {
+    background-color: #000;
+    color: #00FF00; /* Use the green color as per design */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button:hover {
+    background-color: #333;
+}
