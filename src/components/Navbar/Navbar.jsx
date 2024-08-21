@@ -1,43 +1,17 @@
-import Logo from "./Logo";
-import Search from "./SearchBar";
-import Button from "./Button";
-import { useEffect, useState } from "react";
-import styles from "./Navbar.module.css";
+import React from 'react';
+import Logo from './Logo';
+import SearchBar from './SearchBar';
+import Button from './Button';
+import styles from './Navbar.module.css';
 
-const Navbar = ({ data, page, songsData }) => {
-  const [isFeedbackClicked, setIsFeedbackClicked] = useState(false);
-
-  const handleClick = () => {
-    setIsFeedbackClicked(!isFeedbackClicked);
-  };
-
-  useEffect(() => {
-    let feedback = document.getElementById("feedback");
-    let body = document.body;
-    if (isFeedbackClicked) {
-      body.style.overflowY = "hidden";
-      feedback?.classList.add("feedbackClicked");
-    } else {
-      body.style.overflowY = "auto";
-      feedback?.classList.remove("feedbackClicked");
-    }
-  }, [isFeedbackClicked]);
-
-  return (
-    <>
-      {isFeedbackClicked && (
-        <Feedback onClose={() => setIsFeedbackClicked(false)} />
-      )}
-      <nav className={styles.nav}>
-        <Logo />
-        <Search data={page === "home" ? data : songsData} page={page} />
-        <Button
-          text="GIVE FEEDBACK"
-          eventHandler={{ event: "onClick", handler: handleClick }}
-        />
-      </nav>
-    </>
-  );
+const Navbar = () => {
+    return (
+        <nav className={styles.nav}>
+            <Logo />
+            <SearchBar />
+            <Button text="Give Feedback" />
+        </nav>
+    );
 };
 
 export default Navbar;
