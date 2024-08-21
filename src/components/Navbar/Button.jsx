@@ -1,12 +1,18 @@
-import React from 'react';
-import styles from './Button.module.css';
+import navbarStyles from "../Navbar/Navbar.module.css";
 
-const Button = ({ text }) => {
-    return (
-        <button className={styles.button}>
-            {text}
-        </button>
-    );
+const Button = ({ text, eventHandler }) => {
+  return (
+    <div>
+      <button
+        className={navbarStyles.feedback}
+        onClick={(e) =>
+          eventHandler.event === "onClick" && eventHandler.handler(e)
+        }
+      >
+        {text}
+      </button>
+    </div>
+  );
 };
 
 export default Button;
