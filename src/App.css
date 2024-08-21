@@ -27,3 +27,7 @@ hr {
 .swiper-slide {
   width: auto !important;
 }
+.hero {
+  z-index: 1000;
+  position: relative;
+}
