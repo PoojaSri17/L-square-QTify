@@ -1,3 +1,4 @@
+import React from 'react';
 import navbarStyles from "../Navbar/Navbar.module.css";
 
 const Button = ({ text, eventHandler }) => {

@@ -15,8 +15,13 @@
 
 
 /* Logo */
+.logo {
+  margin-left: 15px; /* Ensure gap from the left border */
+  display: flex;
+  align-items: center; /* Vertically center */
+}
 
-.img {
+.logo img {
   width: 70px;
   height: 35px;
 }

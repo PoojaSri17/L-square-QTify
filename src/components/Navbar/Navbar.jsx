@@ -9,7 +9,7 @@ const Navbar = () => {
         <nav className={styles.nav}>
             <Logo />
             <SearchBar />
-            <Button text="Give Feedback" />
+            <Button text="Give Feedback" eventHandler={{ event: "onClick", handler: () => alert('Feedback') }} />
         </nav>
     );
 };
