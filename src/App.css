@@ -30,16 +30,3 @@ hr {
   z-index: 1000;
   position: relative;
 }
-
-.nav {
-  width: 100vw;
-  height: 75px;
-  background-color: var(--primary-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 30px;
-  position: sticky;
-  top: 0;
-  z-index: 5;
-}
