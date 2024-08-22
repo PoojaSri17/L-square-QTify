@@ -1,0 +1,42 @@
+.sectionWrapper {
+    width: 100%;
+    margin-top: 35px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 30px 20px 0 20px;
+  }
+  
+  .header p {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .showAll {
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+  
+  .cardsWrapper {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px; /* Adjust spacing between cards */
+  }
+  
+  .expanded {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  @media (min-width: 800px) {
+    .cardsWrapper {
+      margin: 20px 40px 40px 40px;
+    }
+    .header {
+      margin: 0 20px;
+    }
+  }
+  
