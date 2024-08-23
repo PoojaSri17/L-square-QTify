@@ -7,12 +7,14 @@
 
 .card {
   width: 160px;
+  height: 240px; /* Ensure card height is exactly 240px */
   background-color: #fff;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 10px; /* Rounded corners for the entire card */
+  padding: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .card:hover {
@@ -22,42 +24,47 @@
 
 .cardImgWrapper {
   width: 100%;
-  border-radius: 10px;
+  height: 200px; /* Ensure the image wrapper height fits within the card */
   overflow: hidden; /* Ensures image stays within card */
+  border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .cardImg {
   width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
+  height: 100%; /* Make the image fill the wrapper */
+  object-fit: cover; /* Cover the entire area without distorting the image */
 }
 
 .followsWrapper {
   width: 100%;
+  height: 40px; /* Set the height to fit within the remaining space */
   display: flex;
   justify-content: center;
   background-color: white;
-  padding: 5px 0;
-  margin-top: -5px; /* Slight overlap to touch the image */
-  border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
+  padding: 2px 0; /* Reduce padding for the follow chip */
+  border-radius: 0 0 10px 10px; /* Rounded corners only at the bottom */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .followsChip {
   display: inline-block;
-  padding: 4px 8px !important; /* Add padding for spacing */
+  padding: 2px 8px !important; /* Reduce padding for chip */
   font-size: 12px !important;
   font-weight: 500 !important; /* Ensure the text is bold if needed */
   color: #fff !important; /* Text color */
   background-color: black !important; /* Background color of the chip */
-  border-radius: 12px !important; /* Rounded corners */
+  border-radius: 12px !important; /* Rounded corners for the chip */
   margin: 2px !important; /* Add some space between chips if multiple */
 }
 
-
 .albumTitle {
-  font-size: 14px;
+  font-size: 16px; /* Maintain a readable font size */
   font-weight: 500;
   color: white;
-  margin-top: 10px;
-  text-align: center;
+  margin-top: 5px; /* Reduce margin to save space */
+  text-align: left; /* Align text to the left */
+  width: 100%; /* Ensure the title spans the full width of the card */
+  padding-left: 5px; /* Optional: add some padding to move the text slightly away from the edge */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }

@@ -5,7 +5,6 @@ import styles from './Section.module.css';
 
 const Section = ({ title, endpoint }) => {
   const [data, setData] = useState([]);
-  const [toggle, setToggle] = useState(false);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
@@ -27,16 +26,16 @@ const Section = ({ title, endpoint }) => {
     <div className={styles.sectionWrapper}>
       <div className={styles.header}>
         <p>{title}</p>
-        <button className={styles.showAll} onClick={() => setToggle(!toggle)}>
-          {toggle ? 'Collapse' : 'Show All'}
+        <button className={styles.showAll} onClick={() => { /* No toggle logic needed */ }}>
+          Show All
         </button>
       </div>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className={`${styles.cardsWrapper} ${toggle ? styles.expanded : ''}`}>
+        <div className={styles.cardsWrapper}>
           {data.length ? (
-            data.slice(0, toggle ? data.length : 4).map((item) => (
+            data.map((item) => (
               <Card key={item.id} data={item} type="album" />
             ))
           ) : (
@@ -50,4 +49,3 @@ const Section = ({ title, endpoint }) => {
 };
 
 export default Section;
-
