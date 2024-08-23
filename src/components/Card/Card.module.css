@@ -1,41 +1,63 @@
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Space below each card */
+}
+
 .card {
-    width: 160px;
-    height: 235px;
-    cursor: pointer;
-  }
-  
-  .cardImg {
-    width: 160px;
-    height: 208px;
-    background-color: var(--white-color);
-    border-radius: 15px 15px 10px 10px;
-  }
-  
-  .cardImg img {
-    width: inherit;
-    height: 170px;
-    object-fit: fill;
-    border-radius: 10px 10px 0 0;
-  }
-  
-  .cardImg p {
-    display: inline-block;
-    height: 23px;
-    font-size: 10px;
-    background-color: var(--black-color);
-    border-radius: 10px;
-    padding: 5px;
-    margin-left: 10px;
-  }
-  
-  .card div h3 {
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: 5px;
-  }
-  
-  @media (max-width: 600px) {
-    .card {
-      width: 150px;
-    }
-  }
+  width: 160px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cardImgWrapper {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden; /* Ensures image stays within card */
+}
+
+.cardImg {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.followsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 5px 0;
+  margin-top: -5px; /* Slight overlap to touch the image */
+  border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
+}
+
+.followsChip {
+  display: inline-block;
+  padding: 4px 8px !important; /* Add padding for spacing */
+  font-size: 12px !important;
+  font-weight: 500 !important; /* Ensure the text is bold if needed */
+  color: #fff !important; /* Text color */
+  background-color: black !important; /* Background color of the chip */
+  border-radius: 12px !important; /* Rounded corners */
+  margin: 2px !important; /* Add some space between chips if multiple */
+}
+
+
+.albumTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  margin-top: 10px;
+  text-align: center;
+}

@@ -1,67 +1,53 @@
-import React, { useState, useEffect } from "react";
-import Card from "../Card/Card";
-import styles from "./Section.module.css";
-import { Box, CircularProgress } from "@mui/material";
-import { fetchTopAlbum } from "../../api/api";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Card from '../Card/Card'; // Ensure this path is correct
+import styles from './Section.module.css'; // Ensure this path is correct
 
-const Section = () => {
-  const [albums, setAlbums] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Section = ({ title, endpoint }) => {
+  const [data, setData] = useState([]);
   const [toggle, setToggle] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Use fetchTopAlbum function to get data
-        const data = await fetchTopAlbum();
-        setAlbums(data);
+        const response = await axios.get(endpoint);
+        setData(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
     };
-
+    
     fetchData();
-  }, []);
-
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
-
+  }, [endpoint]);
+  
   return (
     <div className={styles.sectionWrapper}>
       <div className={styles.header}>
-        <p>Top Albums</p>
-        <p className={styles.showAll} onClick={handleToggle}>
-          {toggle ? "Collapse" : "Show All"}
-        </p>
+        <p>{title}</p>
+        <button className={styles.showAll} onClick={() => setToggle(!toggle)}>
+          {toggle ? 'Collapse' : 'Show All'}
+        </button>
       </div>
       {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "20px 0",
-          }}
-        >
-          <CircularProgress color="primary" />
-          <p style={{ marginLeft: "10px" }}>Loading...</p>
-        </Box>
+        <p>Loading...</p>
       ) : (
-        <div className={`${styles.cardsWrapper} ${toggle ? styles.expanded : ""}`}>
-          {albums.length > 0 ? (
-            albums.map((album) => (
-              <Card key={album.id} data={album} type="album" />
+        <div className={`${styles.cardsWrapper} ${toggle ? styles.expanded : ''}`}>
+          {data.length ? (
+            data.slice(0, toggle ? data.length : 4).map((item) => (
+              <Card key={item.id} data={item} type="album" />
             ))
           ) : (
-            <p>No albums available</p>
+            <p>No data available</p>
           )}
         </div>
       )}
+      <hr className={styles.sectionSeparator} />
     </div>
   );
 };
 
 export default Section;
+
