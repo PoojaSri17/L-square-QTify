@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Card from '../Card/Card'; // Ensure this path is correct
-import styles from './Section.module.css'; // Ensure this path is correct
+import Card from '../Card/Card'; 
+import styles from './Section.module.css'; 
 
 const Section = ({ title, endpoint }) => {
   const [data, setData] = useState([]);

@@ -36,7 +36,7 @@ const SearchBar = ({ data, page }) => {
           placeholder={
             page === 'home'
               ? 'Search an Album of Your Choice'
-              : 'Search a song of Your Choice'
+              : 'Search a song of your choice'
           }
           value={value}
           onChange={handleInput}
