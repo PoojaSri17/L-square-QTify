@@ -1,41 +1,74 @@
 .sectionWrapper {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 35px;
+}
+
+.showAll {
+  color: var(--primary-color);
+  cursor: pointer;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px 0 20px;
+  align-items: baseline;
+  padding: 30px 20px 0 20px;
 }
 
 .header p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 }
 
-.showAll {
-  color: #28a745;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
 .cardsWrapper {
-  margin: 10px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px; /* Space between cards */
-  box-sizing: border-box; /* Ensure the total width includes padding and margins */
+  display: flex;
+  flex-direction: row; /* Ensure cards are laid out horizontally */
+  gap: 25px; /* Space between cards */
+  flex-wrap: wrap; /* Allow wrapping of rows if necessary */
+  padding: 20px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
-.expanded {
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Ensure space between cards */
+.wrapper {
+  display: flex;
+  flex-direction: row; /* Ensure cards are laid out horizontally */
+  gap: 25px; /* Space between cards */
+  flex-wrap: nowrap; /* Prevent wrapping; ensure horizontal layout */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical overflow */
+  padding: 0; /* Ensure no extra padding affects layout */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
-.sectionSeparator {
-  border: none;
-  border-top: 1px solid #28a745;
-  margin: 20px 0;
+.wrapper::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.toggleText {
+  margin-right: 10px;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.genreTab {
+  color: var(--color-white) !important;
+}
+
+.genreTab.Mui-selected {
+  color: #34c94b !important;
+}
+
+@media (min-width: 800px) {
+  .cardsWrapper {
+    margin: 20px 40px 40px 40px;
+  }
+  .header {
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    gap: 15px; /* Adjust spacing for smaller screens */
+  }
 }

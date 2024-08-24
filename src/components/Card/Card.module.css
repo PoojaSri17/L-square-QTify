@@ -1,9 +1,12 @@
-.cardWrapper {
+.cardsWrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px; /* Space below each card */
+  flex-direction: row; /* Ensure cards are laid out horizontally */
+  gap: 25px; /* Space between cards */
+  flex-wrap: nowrap; /* Prevent wrapping; ensure horizontal layout */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical overflow */
 }
+
 
 .card {
   width: 160px;
