@@ -1,25 +1,49 @@
 import React from "react";
-import { Chip } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import styles from "./Card.module.css";
+import { useNavigate } from "react-router-dom";
 
-const Card = ({ data }) => {
-  return (
-    <div className={styles.cardWrapper}>
-      <div className={styles.card}>
-        <div className={styles.cardImgWrapper}>
-          <img className={styles.cardImg} src={data.image} alt={data.title} />
-        </div>
-        <div className={styles.followsWrapper}>
-          <Chip
-            label={`${(data.follows / 1000).toFixed(1)}k Follows`}
-            className={styles.followsChip}
-            size="small"
-          />
-        </div>
+const Card = ({ data, type }) => {
+  let navigate = useNavigate();
+  const getCard = () => {
+    const commonContent = (
+      <div
+        className={styles.cardImg}
+        onClick={() =>
+          type !== "songs" &&
+          navigate(`/album/${data.slug}`, { state: { album: data } })
+        }
+      >
+        <img src={data.image} alt={type === "album" ? "album" : data.title} />
+        <p>
+          {((type === "album" ? data.follows : data.likes) / 1000).toFixed(1)}
+          {data.follows > 999999 || data.likes > 999999 ? "m" : "k"}{" "}
+          {type === "album" ? "Follows" : "Likes"}
+        </p>
       </div>
-      <h3 className={styles.albumTitle}>{data.title}</h3>
-    </div>
-  );
+    );
+
+    return (
+      <Tooltip
+        title={
+          type === "album"
+            ? `${data.songs.length} songs`
+            : `Label : ${data.genre.label}`
+        }
+        placement="top"
+        arrow
+      >
+        <div className={styles.card}>
+          {commonContent}
+          <div>
+            <h3>{data.title}</h3>
+          </div>
+        </div>
+      </Tooltip>
+    );
+  };
+
+  return type === "album" || type === "songs" ? getCard() : null;
 };
 
 export default Card;

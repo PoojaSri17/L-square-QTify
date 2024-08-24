@@ -21,27 +21,13 @@
 }
 
 .cardsWrapper {
-  display: flex;
-  flex-direction: row; /* Ensure cards are laid out horizontally */
-  gap: 25px; /* Space between cards */
-  flex-wrap: wrap; /* Allow wrapping of rows if necessary */
-  padding: 20px; /* Adjust padding as needed */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  margin: 20px;
 }
 
 .wrapper {
   display: flex;
-  flex-direction: row; /* Ensure cards are laid out horizontally */
-  gap: 25px; /* Space between cards */
-  flex-wrap: nowrap; /* Prevent wrapping; ensure horizontal layout */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  overflow-y: hidden; /* Hide vertical overflow */
-  padding: 0; /* Ensure no extra padding affects layout */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
-
-.wrapper::-webkit-scrollbar {
-  display: none; /* Hide scrollbar */
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
 .toggleText {
@@ -64,11 +50,5 @@
   }
   .header {
     margin: 0 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .wrapper {
-    gap: 15px; /* Adjust spacing for smaller screens */
   }
 }

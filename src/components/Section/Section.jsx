@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import * as React from "react";
+import styles from "../Section/Section.module.css";
+import "./material.css";
+import { useState } from "react";
 import Card from "../Card/Card";
-import Carousel from "../Carousel/Carousel";
-import styles from "./Section.module.css";
 import { Box, CircularProgress, Tabs, Tab } from "@mui/material";
+import Carousel from "../Carousel/Carousel";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-const Section = ({ title, endpoint, type, genres = [] }) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [toggle, setToggle] = useState(false);
-  const [value, setValue] = useState("all");
-
-  // Custom theme for the Tabs
+const Section = ({ title, data, type, genres }) => {
   const theme = createTheme({
     components: {
       MuiTabs: {
@@ -30,6 +25,9 @@ const Section = ({ title, endpoint, type, genres = [] }) => {
     },
   });
 
+  const [toggle, setToggle] = useState(false);
+  const [value, setValue] = useState("all");
+
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -40,35 +38,49 @@ const Section = ({ title, endpoint, type, genres = [] }) => {
 
   const filterSongs = () => {
     if (type === "songs" && value !== "all") {
-      return data.filter((ele) => ele.genre?.key === value);
+      return data.filter((ele) => ele.genre.key === value);
     }
     return data;
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(endpoint);
-        setData(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [endpoint]);
-
   return (
-    <div className={styles.sectionWrapper}>
+    <div>
       <div className={styles.header}>
         <p>{title}</p>
-        <p className={styles.showAll} onClick={handleToggle}>
-          {toggle ? "Collapse" : "Show All"}
-        </p>
+        {type !== "songs" && (
+          <p className={styles.showAll} onClick={handleToggle}>
+            {toggle ? "Collapse" : "Show All"}
+          </p>
+        )}
       </div>
-      {loading ? (
+      {type === "songs" && (
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: "100%", padding: "10px 20px" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              textColor="primary"
+              aria-label="Genre Filter Tabs"
+            >
+              <Tab
+                value="all"
+                label="All"
+                key="all"
+                className={styles.genreTab}
+              />
+              {genres.map((tab) => (
+                <Tab
+                  key={tab.key}
+                  value={tab.key}
+                  label={tab.label}
+                  className={styles.genreTab}
+                />
+              ))}
+            </Tabs>
+          </Box>
+        </ThemeProvider>
+      )}
+      {!data.length ? (
         <Box
           sx={{
             display: "flex",
@@ -82,36 +94,29 @@ const Section = ({ title, endpoint, type, genres = [] }) => {
         </Box>
       ) : (
         <>
-          {type === "songs" && (
-            <ThemeProvider theme={theme}>
-              <Box sx={{ width: "100%", padding: "10px 20px" }}>
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  textColor="primary"
-                  aria-label="Genre Filter Tabs"
-                >
-                  <Tab value="all" label="All" key="all" className={styles.genreTab} />
-                  {genres.map((tab) => (
-                    <Tab key={tab.key} value={tab.key} label={tab.label} className={styles.genreTab} />
-                  ))}
-                </Tabs>
-              </Box>
-            </ThemeProvider>
-          )}
-          <div className={toggle ? styles.cardsWrapper : styles.carouselWrapper}>
-            {toggle ? (
-              filterSongs().map((item) => (
-                <Card key={item.id} data={item} type={type} />
-              ))
-            ) : (
-              <Carousel
-                data={filterSongs()}
-                component={(item) => <Card key={item.id} data={item} type={type} />}
-              />
-            )}
+          <div className={styles.cardsWrapper}>
+            <div className={styles.wrapper}>
+              {toggle ? (
+                type === "songs" ? (
+                  filterSongs().map((card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  ))
+                ) : (
+                  data.map((card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  ))
+                )
+              ) : (
+                <Carousel
+                  data={type === "songs" ? filterSongs() : data}
+                  component={(card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  )}
+                />
+              )}
+            </div>
           </div>
-          {toggle && title === "Top Albums" && <hr className={styles.sectionSeparator} />}
+          {toggle && title === "Top Albums" && <hr />}
         </>
       )}
     </div>

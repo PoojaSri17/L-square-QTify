@@ -1,73 +1,41 @@
-.cardsWrapper {
-  display: flex;
-  flex-direction: row; /* Ensure cards are laid out horizontally */
-  gap: 25px; /* Space between cards */
-  flex-wrap: nowrap; /* Prevent wrapping; ensure horizontal layout */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  overflow-y: hidden; /* Hide vertical overflow */
-}
-
-
 .card {
   width: 160px;
-  height: 240px; /* Ensure card height is exactly 240px */
-  background-color: #fff;
-  border-radius: 10px; /* Rounded corners for the entire card */
-  padding: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 235px;
   cursor: pointer;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.cardImgWrapper {
-  width: 100%;
-  height: 200px; /* Ensure the image wrapper height fits within the card */
-  overflow: hidden; /* Ensures image stays within card */
-  border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .cardImg {
-  width: 100%;
-  height: 100%; /* Make the image fill the wrapper */
-  object-fit: cover; /* Cover the entire area without distorting the image */
+  width: 160px;
+  height: 208px;
+  background-color: var(--white-color);
+  border-radius: 15px 15px 10px 10px;
 }
 
-.followsWrapper {
-  width: 100%;
-  height: 40px; /* Set the height to fit within the remaining space */
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  padding: 2px 0; /* Reduce padding for the follow chip */
-  border-radius: 0 0 10px 10px; /* Rounded corners only at the bottom */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+.cardImg img {
+  width: inherit;
+  height: 170px;
+  object-fit: fill;
+  border-radius: 10px 10px 0 0;
 }
 
-.followsChip {
+.cardImg p {
   display: inline-block;
-  padding: 2px 8px !important; /* Reduce padding for chip */
-  font-size: 12px !important;
-  font-weight: 500 !important; /* Ensure the text is bold if needed */
-  color: #fff !important; /* Text color */
-  background-color: black !important; /* Background color of the chip */
-  border-radius: 12px !important; /* Rounded corners for the chip */
-  margin: 2px !important; /* Add some space between chips if multiple */
+  height: 23px;
+  font-size: 10px;
+  background-color: var(--black-color);
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 10px;
 }
 
-.albumTitle {
-  font-size: 16px; /* Maintain a readable font size */
+.card div h3 {
+  font-size: 14px;
   font-weight: 500;
-  color: white;
-  margin-top: 5px; /* Reduce margin to save space */
-  text-align: left; /* Align text to the left */
-  width: 100%; /* Ensure the title spans the full width of the card */
-  padding-left: 5px; /* Optional: add some padding to move the text slightly away from the edge */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 150px;
+  }
 }
