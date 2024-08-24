@@ -10,8 +10,8 @@ function Footer() {
           <img src={image} alt="" />
         </div>
         <div>
-          <p className={styles.songName}>Song Name</p>
-          <p className={styles.albumName}> Album Name</p>
+          <p className={styles.songName}>Feel the Beat Anywhere!!</p>
+          <p className={styles.albumName}> QTify</p>
         </div>
       </div>
     </div>
