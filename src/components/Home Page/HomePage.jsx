@@ -4,13 +4,14 @@ import Hero from "../Hero/Hero";
 import Navbar from "..//Navbar/Navbar";
 import Section from "../Section/Section";
 import { useState, useEffect } from "react";
+import Footer from "../Footer/Footer";
 import {
   fetchTopAlbum,
   fetchNewAlbum,
   fetchSongs,
   fetchGenres,
 } from "../../api/api";
-
+import { FAQs } from "../FAQs/FAQs";
 function HomePage() {
   let [topAlbum, setTopAlbum] = useState([]);
   let [newAlbum, setNewAlbum] = useState([]);
@@ -43,7 +44,10 @@ function HomePage() {
         <Section title="Songs" data={songs} type="songs" genres={genres} />{" "}
         <hr />
       </div>{" "}
-      
+      <FAQs />
+      <hr style={{ backgroundColor: "gray", border: "1px solid gray" }} />{" "}
+      <Footer />
+      <hr /> 
     </>
   );
 }
